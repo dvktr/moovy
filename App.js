@@ -1,21 +1,40 @@
 import { StatusBar } from 'expo-status-bar';
-import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import React, { useState } from 'react';
+import { StyleSheet, Text, View, Image, Button, TouchableOpacity} from 'react-native';
+import { NavigationContainer } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
+
+import Default from './src/pages/Default';
+import Slider from './src/pages/Slider';
+import Tabs from './navigation/tabs'
+
+const Stack = createStackNavigator();
 
 export default function App() {
-  return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
-  );
-}
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+  return(
+      <NavigationContainer>
+      <Stack.Navigator 
+      initialRouteName="Slider" 
+      screenOptions={{
+        headerShown: false
+      }}>
+        <Stack.Screen name="Slider" component={Slider}/>
+        <Stack.Screen name="Default" component={Default}/>
+        <Stack.Screen name="Home" component={Tabs}/>
+      </Stack.Navigator>
+    </NavigationContainer>
+  )
+}
+/*
+   <NavigationContainer>
+      <Stack.Navigator 
+      initialRouteName="Slider" 
+      screenOptions={{
+        headerShown: false
+      }}>
+        <Stack.Screen name="Slider" component={Slider}/>
+        <Stack.Screen name="Home" component={Home}/>
+      </Stack.Navigator>
+    </NavigationContainer>
+    */ 
